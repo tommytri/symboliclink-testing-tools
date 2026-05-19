@@ -45,5 +45,5 @@ jobs:
         with:
           name: symboliclink-testing-tools
           path: |
-            **/bin/Win32/Release/*.exe
+            Release/*.exe
           if-no-files-found: warn
