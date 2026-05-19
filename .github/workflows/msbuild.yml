@@ -28,9 +28,9 @@ jobs:
 
       - name: Build solution
         run: |
-          msbuild symboliclink-testing-tools.sln ^
-            /p:Configuration=${{ matrix.configuration }} ^
-            /p:Platform=${{ matrix.platform }} ^
+          msbuild symboliclink-testing-tools.sln
+            /p:Configuration=${{ matrix.configuration }}
+            /p:Platform=${{ matrix.platform }}
             /m
 
       - name: Upload binaries
