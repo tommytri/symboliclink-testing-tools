@@ -33,9 +33,17 @@ jobs:
             /p:Platform=${{ matrix.platform }} `
             /m
 
+      - name: Debug - Find all exe files
+        run: |
+          Write-Host "Searching for all .exe files..."
+          Get-ChildItem -Path . -Include "*.exe" -Recurse | ForEach-Object { Write-Host $_.FullName }
+          Write-Host "Listing bin directory structure..."
+          Get-ChildItem -Path "**/bin" -Recurse -ErrorAction SilentlyContinue | Select-Object -Property FullName
+
       - name: Upload binaries
         uses: actions/upload-artifact@v4
         with:
           name: symboliclink-testing-tools
           path: |
-            **\bin\${{ matrix.platform }}\${{ matrix.configuration }}\*.exe
+            **/bin/Win32/Release/*.exe
+          if-no-files-found: warn
